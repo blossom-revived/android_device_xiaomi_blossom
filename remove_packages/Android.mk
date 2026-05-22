@@ -17,6 +17,24 @@ LOCAL_OVERRIDES_PACKAGES += \
     AudioFX \
     MusicFX
 endif
+ifeq ($(WITH_GMS),true)
+LOCAL_OVERRIDES_PACKAGES := \
+    Chrome \
+    Chrome-Stub \
+    talkback \
+    AvatarPickerGoogle \
+    Flipendo \
+    QuickAccessWallet \
+    GooglePrintRecommendationService \
+    Velvet \
+    NowPlayingPrebuilt \
+    HealthIntelligencePrebuilt \
+    AndroidAutoStubPrebuilt \
+    CarrierLocation \
+    GoogleOneTimeInitializer \
+    OdadPrebuilt \
+    NowPlayingPrebuilt
+endif
 LOCAL_UNINSTALLABLE_MODULE := true
 LOCAL_CERTIFICATE := PRESIGNED
 LOCAL_SRC_FILES := /dev/null
