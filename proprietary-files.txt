@@ -955,13 +955,11 @@ vendor/etc/init/bootperf.rc
 vendor/etc/init/vendor.mediatek.hardware.mtkpower@1.0-init.rc
 vendor/etc/init/vendor.mediatek.hardware.mtkpower@1.0-service.rc
 vendor/lib/hw/power.default.so:vendor/lib/hw/power.mt6765.so
-vendor/lib/hw/vendor.mediatek.hardware.mtkpower@1.2-impl.so
+vendor/lib/hw/vendor.mediatek.hardware.mtkpower@1.1-impl.so
 vendor/lib/libmtkperf_client_vendor.so
 vendor/lib/libperfctl_vendor.so
-vendor/lib/libpower_timer.so
 vendor/lib/libpowerhal.so
 vendor/lib/libpowerhalwrap_vendor.so
-vendor/lib/vendor.mediatek.hardware.bluetooth.audio@2.2.so
 vendor/lib/vendor.mediatek.hardware.power@1.1.so
 vendor/lib/vendor.mediatek.hardware.power@2.0.so
 
@@ -984,8 +982,8 @@ vendor/bin/rttv
 vendor/bin/stp_dump3
 vendor/bin/testgameserver
 vendor/etc/MNL_Config.xml
-vendor/etc/apdb/APDB_MT6765_S01__W2149
-vendor/etc/apdb/APDB_MT6765_S01__W2149_ENUM
+vendor/etc/apdb/APDB_MT6765_S01__W2043
+vendor/etc/apdb/APDB_MT6765_S01__W2043_ENUM
 vendor/etc/ecc_list.xml
 vendor/etc/ecc_list_OP01.xml
 vendor/etc/ecc_list_OP02.xml
