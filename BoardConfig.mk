@@ -7,6 +7,7 @@
 BOARD_VENDOR := xiaomi
 
 DEVICE_PATH := device/xiaomi/blossom
+KERNEL_PATH := device/xiaomi/blossom-kernel
 
 # OTA
 TARGET_OTA_ASSERT_DEVICE := dandelion,angelica,angelican,cattail,angelicain,blossom
@@ -63,11 +64,19 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_blossom
 MALLOC_LOW_MEMORY := true
 
 # Kernel
-TARGET_KERNEL_CONFIG := blossom_defconfig # no file, only make build system happy
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)-kernel/kernel # automatically copied
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)-kernel/dtb.img # for mkbootimg only
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)-kernel/dtbo.img # automatically copied
-TARGET_FORCE_PREBUILT_KERNEL := true # dont really build with our imcomplete "source"
+TARGET_PREBUILT_KERNEL := $(KERNEL_PATH)/Image.gz
+PRODUCT_COPY_FILES += \
+    $(TARGET_PREBUILT_KERNEL):kernel
+
+# Kill lineage kernel build task while preserving kernel
+TARGET_NO_KERNEL_OVERRIDE := true
+
+# Workaround to make lineage's soong generator work
+TARGET_KERNEL_SOURCE := $(KERNEL_PATH)/kernel-headers
+
+# DTB/DTBO
+BOARD_PREBUILT_DTB := $(KERNEL_PATH)/dtb/mt6765.dtb
+BOARD_PREBUILT_DTBOIMAGE := $(KERNEL_PATH)/dtbo.img
 
 # Bootloader
 BOARD_BOOT_HEADER_VERSION := 2
