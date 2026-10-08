@@ -54,39 +54,7 @@ if [ -z "${SRC}" ]; then
 fi
 
 function blob_fixup() {
-    case "${1}" in
-        vendor/lib*/libwvhidl.so | vendor/lib*/mediadrm/libwvdrmengine.so)
-            grep -q "libprotobuf-cpp-lite-3.9.1.so" "${2}" && \
-            "${PATCHELF}" --replace-needed "libprotobuf-cpp-lite-3.9.1.so" "libprotobuf-cpp-full-3.9.1.so" "${2}"
-            ;;
-        vendor/bin/hw/android.hardware.thermal@2.0-service.mtk)
-            "${PATCHELF}" --replace-needed "libhidlbase.so" "libhidlbase-v32.so" "${2}"
-            ;;
-        vendor/bin/mnld | vendor/lib*/libaalservice.so | vendor/lib*/libcam.utils.sensorprovider.so)
-            grep -q "libshim_sensors.so" "$2" || "$PATCHELF" --add-needed "libshim_sensors.so" "$2"
-            ;;
-        system_ext/lib/libsource.so)
-            grep -q libshim_ui.so "$2" || "$PATCHELF" --add-needed libshim_ui.so "$2"
-            ;;
-        system_ext/lib/libimsma.so)
-            [ "$2" = "" ] && return 0
-            "${PATCHELF}" --replace-needed "libsink.so" "libsink-mtk.so" "${2}"
-            ;;
-	vendor/lib/libutils-v30.so)
-            [ "$2" = "" ] && return 0
-            grep -q "libprocessgroup_shim.so" "${2}" || "${PATCHELF}" --add-needed "libprocessgroup_shim.so" "${2}"
-            ;;
-        vendor/bin/hw/mtkfusionrild)
-            [ "$2" = "" ] && return 0
-            grep -q "libutils-v32.so" "${2}" || "${PATCHELF}" --add-needed "libutils-v32.so" "${2}"
-            ;;
-        vendor/lib/libsysenv.so | vendor/lib*/libnvram.so)
-            [ "$2" = "" ] && return 0
-            grep -q "libshim_base.so" "${2}" || "${PATCHELF}" --add-needed "libshim_base.so" "${2}"
-            ;;
-        *)
-            return 1
-            ;;
+    case "$1" in
     esac
 }
 
